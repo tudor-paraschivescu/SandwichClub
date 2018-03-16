@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
@@ -50,7 +51,7 @@ public class DetailActivity extends AppCompatActivity {
             return;
         }
 
-        populateUI();
+        populateUI(sandwich);
         Picasso.with(this)
                 .load(sandwich.getImage())
                 .into(ingredientsIv);
@@ -63,7 +64,22 @@ public class DetailActivity extends AppCompatActivity {
         Toast.makeText(this, R.string.detail_error_message, Toast.LENGTH_SHORT).show();
     }
 
-    private void populateUI() {
+    private void populateUI(Sandwich s) {
 
+        // Populate the text view with also known names
+        TextView alsoKnownTv = findViewById(R.id.also_known_tv);
+        alsoKnownTv.setText(s.getAlsoKnownAs().isEmpty() ? "-" : s.getAlsoKnownAs().toString());
+
+        // Populate the text view with place of origin
+        TextView placeOfOriginTv = findViewById(R.id.origin_tv);
+        placeOfOriginTv.setText(s.getPlaceOfOrigin().isEmpty() ? "-" : s.getPlaceOfOrigin());
+
+        // Populate the text view with description
+        TextView descriptionTv = findViewById(R.id.description_tv);
+        descriptionTv.setText(s.getDescription().isEmpty() ? "-" : s.getDescription());
+
+        // Populate the text view with ingredients
+        TextView ingredientsTv = findViewById(R.id.ingredients_tv);
+        ingredientsTv.setText(s.getIngredients().isEmpty() ? "-" : s.getIngredients().toString());
     }
 }
