@@ -73,4 +73,30 @@ public class Sandwich {
     public void setIngredients(List<String> ingredients) {
         this.ingredients = ingredients;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+
+        // Build the list of also known names
+        for (String name : alsoKnownAs) {
+            sb.append(name).append(" ");
+        }
+
+        String sAlsoKnownAs = sb.toString();
+
+        // Clear string builder buffer
+        sb.setLength(0);
+
+        // Build the list of ingredients
+        for (String ingredient : ingredients) {
+            sb.append(ingredient).append(" ");
+        }
+
+        String sIngredients = sb.toString();
+
+        return mainName + ", also known as " + sAlsoKnownAs + "from " + placeOfOrigin
+                + " with description: [" + description + "] and image at " + image
+                + " with following ingredients: " + sIngredients;
+    }
 }
